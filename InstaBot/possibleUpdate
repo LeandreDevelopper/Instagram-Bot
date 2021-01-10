@@ -1,0 +1,61 @@
+'''
+Pub Section
+'''
+
+def pubs(self):
+    bot = self.bot
+    bot.get("https://instagram.com/" + self.username)
+    self.openfollowerslist()
+    self.pub()
+
+
+def openfollowerslist(self):
+    bot = self.bot
+    following = bot.find_elements_by_css_selector('a ')
+    following[1].click()
+    sleep(5)
+
+def scroll(self):
+    bot = self.bot
+    body = bot.find_element_by_xpath("//div[@class='isgrP']")
+    bot.execute_script('arguments[0].scrollTop = arguments[0].scrollTop + arguments[0].offsetHeight;', body)
+
+def sendMessage(self):
+    bot = self.bot
+    possibleTextMessage = bot.find_elements_by_css_selector('FPmhX notranslate_0imsa')
+    for button_search in possibleTextMessage:
+        if(True):
+            button_search.click()
+            break
+
+def pub(self):
+    bot = self.bot
+    follower_list = bot.find_elements_by_css_selector('FPmhX notranslate_0imsa') # get the list of followers
+    cnt = 0
+    for people in range( 1 , 100000 ):
+        if(True):
+            cnt = cnt + 1
+            for man in follower_list:
+                print("{}\n".format(follower_list[man]))
+
+            #follower_list[people].click()
+            self.sendMessage()
+            if(cnt%5==0):
+                self.scroll()
+                sleep(2)
+                follower_list = self.driver.find_elements_by_css_selector('button') #update follower list after scroll
+                people = 1 # update people number
+            print("Unfollowed "+str(cnt)+" people")
+            sleep(60) # you can change it, but it should better be a high value
+
+
+''''''''''''
+Dans le main
+'''''''''
+
+PubTime = input(" pub aujourd'hui? : (Y/N)")
+if PubTime == "Y":
+    print("Go faire de la pub ")
+    bot.pubs()
+else:
+    print("Pas de unFollow aujourd'hui")
