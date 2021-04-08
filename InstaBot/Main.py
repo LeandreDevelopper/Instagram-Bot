@@ -13,7 +13,7 @@ from datetime import datetime
 from datetime import date
 import os
 
-PATH = "C:\Program Files (x86)\chromedriver.exe"
+PATH = "C:\Program Files (x86)\chromedriver.exe" ## PATH of chromedriver
 
 '''
 LISTS
@@ -136,9 +136,9 @@ class InstagramBot():
     def toFollow(self):
         bot = self.bot
         fichierFollow = open("Follow.txt", "a")
-        toFollow = bot.find_element_by_xpath("/html/body/div[4]/div[2]/div/article/header/div[2]/div[1]/div[1]/span")
+        toFollow = bot.find_element_by_xpath("/html/body/div[5]/div[2]/div/article/header/div[2]/div[1]/div[1]/span/a")
         usernameFollow = toFollow.text
-        verification = bot.find_element_by_xpath("/html/body/div[4]/div[2]/div/article/header/div[2]/div[1]/div[2]/button")
+        verification = bot.find_element_by_xpath("/html/body/div[5]/div[2]/div/article/header/div[2]/div[1]/div[2]/button")
         if(verification.text == "Abonné(e)"):
             print("je suis deja abonné")
         else:
@@ -200,7 +200,7 @@ class InstagramBot():
 MAIN PROGRAMME
 '''
 
-bot = InstagramBot("mail@adresse","Usernam","Password")
+bot = InstagramBot("email","password","username")
 bot.singIn()
 
 unFollowTime = input(" Voulez-vous unFollow les personnes follow lorsque le bot tourne : (Y/N)")
